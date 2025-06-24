@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Produk - Simo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600">
+                <span class="text-indigo-800">Si</span>mo
+            </a>
+        </div>
+    </header>
+
+    <!-- Detail Produk -->
+    <section class="py-16">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+            <!-- Gambar -->
+            <div>
+                <img id="product-image" src="" alt="" class="rounded-lg shadow-md w-full" />
+            </div>
+
+            <!-- Detail -->
+            <div>
+                <h1 id="product-name" class="text-3xl font-bold mb-4 text-gray-800">Loading...</h1>
+                <p id="product-price" class="text-xl text-indigo-600 font-semibold mb-2"></p>
+                <p id="product-oldprice" class="text-sm text-gray-500 line-through mb-4"></p>
+                <p id="product-desc" class="text-gray-700 leading-relaxed mb-6"></p>
+
+                <!-- Tombol Aksi -->
+                <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                    <button
+                        class="bg-indigo-600 text-white px-6 py-3 rounded font-bold hover:bg-indigo-700 transition w-full sm:w-auto">
+                        <i class="fas fa-shopping-cart mr-2"></i> Tambah ke Keranjang
+                    </button>
+
+                    <a id="whatsapp-btn"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex items-center justify-center gap-2 bg-green-500 text-white font-semibold px-6 py-3 rounded hover:bg-green-600 transition w-full sm:w-auto text-center">
+                        <i class="fab fa-whatsapp text-lg"></i>
+                        Pesan via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-sm flex flex-col md:flex-row justify-between items-start gap-4">
+            <div>
+                <h4 class="font-bold mb-2">Simo</h4>
+                <p class="text-gray-400">Toko pakaian premium berkualitas dan terjangkau.</p>
+            </div>
+            <div>
+                <p class="text-gray-400">&copy; 2025 Simo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Produk -->
+    <script>
+        const products = {
+            "1": {
+                name: "Kemeja Katun Premium",
+                price: "Rp 499.000",
+                oldPrice: "Rp 799.000",
+                desc: "Kemeja dengan bahan katun premium berkualitas tinggi, cocok digunakan untuk kegiatan formal maupun kasual.",
+                image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80"
+            },
+            "2": {
+                name: "Kemeja Linen Kasual",
+                price: "Rp 429.000",
+                oldPrice: "",
+                desc: "Ringan dan stylish, kemeja linen ini cocok untuk cuaca tropis dan acara santai.",
+                image: "https://images.unsplash.com/photo-1527719327859-c6ce80353573?auto=format&fit=crop&w=800&q=80"
+            },
+            "3": {
+                name: "Kemeja Formal Slim Fit",
+                price: "Rp 599.000",
+                oldPrice: "",
+                desc: "Tampil elegan dengan kemeja formal slim fit. Cocok untuk pertemuan bisnis dan acara resmi.",
+                image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&w=800&q=80"
+            },
+            "4": {
+                name: "Kemeja Flanel Kotak",
+                price: "Rp 399.000",
+                oldPrice: "",
+                desc: "Kemeja flanel dengan motif kotak klasik. Nyaman dipakai untuk aktivitas sehari-hari.",
+                image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80"
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id") || "1";
+        const product = products[id] || products["1"];
+
+        // Isi konten produk
+        document.getElementById("product-name").textContent = product.name;
+        document.getElementById("product-price").textContent = product.price;
+        document.getElementById("product-desc").textContent = product.desc;
+        document.getElementById("product-image").src = product.image;
+
+        if (product.oldPrice) {
+            document.getElementById("product-oldprice").textContent = product.oldPrice;
+        } else {
+            document.getElementById("product-oldprice").style.display = "none";
+        }
+
+        // Buat link WhatsApp otomatis
+        const waText = `Halo, saya tertarik dengan produk "${product.name}" dan ingin memesan. Apakah masih tersedia?`;
+        document.getElementById("whatsapp-btn").href = `https://wa.me/6283824827233?text=${encodeURIComponent(waText)}`;
+    </script>
+</body>
+
+</html>

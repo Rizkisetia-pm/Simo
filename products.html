@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Simo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation (same as index.html) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <!-- Copy navigation from index.html -->
+    </header>
+
+    <!-- Product Listing -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">Semua Produk</h1>
+            <div class="flex space-x-4">
+                <div class="relative">
+                    <select class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500">
+                        <option>Urutkan</option>
+                        <option>Harga Terendah</option>
+                        <option>Harga Tertinggi</option>
+                        <option>Terbaru</option>
+                        <option>Terlaris</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <select class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500">
+                        <option>Kategori</option>
+                        <option>Kemeja Katun</option>
+                        <option>Kemeja Linen</option>
+                        <option>Kemeja Formal</option>
+                        <option>Kemeja Flanel</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Repeat product items (12-16 items) -->
+            <!-- Example product item -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                <div class="relative">
+                    <a href="detail.html">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Kemeja Katun Premium" 
+                             class="w-full h-64 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">Diskon</span>
+                    </a>
+                </div>
+                <div class="p-4">
+                    <a href="detail.html" class="block">
+                        <h3 class="font-bold text-lg mb-2 hover:text-indigo-600">Kemeja Katun Premium</h3>
+                    </a>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-indigo-600 font-bold">Rp 499.000</span>
+                            <span class="ml-2 text-sm text-gray-500 line-through">Rp 799.000</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-indigo-600">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More product items... -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">&laquo;</a>
+                <a href="#" class="px-3 py-1 rounded border bg-indigo-600 text-white">1</a>
+                <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">2</a>
+                <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">3</a>
+                <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">&raquo;</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-gray-800 text-white py-12">
+        <!-- Copy footer from index.html -->
+    </footer>
+</body>
+</html>
