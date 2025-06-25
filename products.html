@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,82 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="bg-gray-50">
-    <!-- Navigation (same as index.html) -->
+
+    <!-- Navigation -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
-        <!-- Copy navigation from index.html -->
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600">
+                <span class="text-indigo-800">Si</span>mo
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-indigo-600 font-medium">Beranda</a>
+                <a href="products.html" class="text-gray-600 hover:text-indigo-600 font-medium">Produk</a>
+                <a href="about.html" class="text-gray-600 hover:text-indigo-600 font-medium">Tentang Kami</a>
+                <a href="contact.html" class="text-gray-600 hover:text-indigo-600 font-medium">Kontak</a>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu"
+                class="md:hidden hidden flex-col space-y-2 mt-4 bg-white px-4 py-2 shadow-md absolute right-4 top-16 rounded z-50">
+                <a href="index.html" class="text-gray-600 hover:text-indigo-600 font-medium">Beranda</a>
+                <a href="products.html" class="text-gray-600 hover:text-indigo-600 font-medium">Produk</a>
+                <a href="about.html" class="text-gray-600 hover:text-indigo-600 font-medium">Tentang Kami</a>
+                <a href="contact.html" class="text-gray-600 hover:text-indigo-600 font-medium">Kontak</a>
+            </div>
+
+            <!-- Ikon kanan -->
+            <div class="flex items-center space-x-4">
+                <!-- Ikon Sosial -->
+                <a href="https://www.instagram.com/simo" target="_blank" class="text-gray-600 hover:text-indigo-600">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@simo" target="_blank" class="text-gray-600 hover:text-indigo-600">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://shopee.co.id/simo" target="_blank" class="text-gray-600 hover:text-indigo-600">
+                    <i class="fas fa-shopping-basket"></i>
+
+                </a>
+                <a href="https://tokopedia.com/simo" target="_blank" class="text-gray-600 hover:text-indigo-600">
+                    <i class="fas fa-shopping-bag"></i>
+                </a>
+                <a href="https://facebook.com/simo" target="_blank" class="text-gray-600 hover:text-indigo-600">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <!-- Ikon Search -->
+                <a href="#" class="text-gray-600 hover:text-indigo-600">
+                    <i class="fas fa-search"></i>
+                </a>
+
+                <!-- Keranjang -->
+                <a href="cart.html" class="text-gray-600 hover:text-indigo-600 relative">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count"
+                        class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </a>
+
+                <!-- Toggle mobile menu -->
+                <button class="md:hidden text-gray-600 hover:text-indigo-600">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <!-- Product Listing -->
+    <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
+
+        <!-- Heading + Filter -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <h1 class="text-3xl font-bold mb-4 md:mb-0">Semua Produk</h1>
             <div class="flex space-x-4">
+                <!-- Urutkan -->
                 <div class="relative">
-                    <select class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500">
+                    <select
+                        class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500">
                         <option>Urutkan</option>
                         <option>Harga Terendah</option>
                         <option>Harga Tertinggi</option>
@@ -30,8 +94,10 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
+                <!-- Kategori -->
                 <div class="relative">
-                    <select class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500">
+                    <select
+                        class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500">
                         <option>Kategori</option>
                         <option>Kemeja Katun</option>
                         <option>Kemeja Linen</option>
@@ -45,52 +111,113 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Repeat product items (12-16 items) -->
-            <!-- Example product item -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                <div class="relative">
-                    <a href="detail.html">
-                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                             alt="Kemeja Katun Premium" 
-                             class="w-full h-64 object-cover">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">Diskon</span>
-                    </a>
+        <!-- Produk -->
+        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Produk akan dimasukkan via JavaScript -->
+        </div>
+
+        <!-- Pagination
+    <div class="mt-12 flex justify-center">
+      <nav class="flex items-center space-x-2">
+        <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">&laquo;</a>
+        <a href="#" class="px-3 py-1 rounded border bg-indigo-600 text-white">1</a>
+        <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">2</a>
+        <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">3</a>
+        <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">&raquo;</a>
+      </nav>
+    </div> -->
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Simo</h3>
+                    <p class="text-gray-400">Toko Pakaian premium dengan kualitas terbaik dan harga terjangkau.</p>
                 </div>
-                <div class="p-4">
-                    <a href="detail.html" class="block">
-                        <h3 class="font-bold text-lg mb-2 hover:text-indigo-600">Kemeja Katun Premium</h3>
-                    </a>
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-indigo-600 font-bold">Rp 499.000</span>
-                            <span class="ml-2 text-sm text-gray-500 line-through">Rp 799.000</span>
-                        </div>
-                        <button class="text-gray-400 hover:text-indigo-600">
-                            <i class="far fa-heart"></i>
-                        </button>
+                <div>
+                    <h4 class="font-semibold mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Beranda</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">Produk</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">Tentang Kami</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Bantuan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Panduan Ukuran</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Kebijakan Pengembalian</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Metode Pembayaran</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Hubungi Kami</h4>
+                    <ul class="space-y-2 mb-4">
+                        <li class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i> +62 838 2482 7233</li>
+                        <li class="text-gray-400"><i class="fas fa-envelope mr-2"></i> simo@gmail.com</li>
+                        <li class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i> Bandung, Indonesia</li>
+                    </ul>
+                    <div class="flex space-x-4 mt-2">
+                        <a href="https://www.tiktok.com/@simo" target="_blank"
+                            class="text-gray-400 hover:text-white text-xl">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.instagram.com/simo" target="_blank"
+                            class="text-gray-400 hover:text-white text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/simo" target="_blank"
+                            class="text-gray-400 hover:text-white text-xl">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://shopee.co.id/simo" target="_blank"
+                            class="text-gray-400 hover:text-white text-xl">
+                            <i class="fas fa-store"></i>
+                        </a>
+                        <a href="https://tokopedia.com/simo" target="_blank"
+                            class="text-gray-400 hover:text-white text-xl">
+                            <i class="fas fa-shopping-bag"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            
-            <!-- More product items... -->
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Simo. All rights reserved.</p>
+            </div>
         </div>
-
-        <!-- Pagination -->
-        <div class="mt-12 flex justify-center">
-            <nav class="flex items-center space-x-2">
-                <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">&laquo;</a>
-                <a href="#" class="px-3 py-1 rounded border bg-indigo-600 text-white">1</a>
-                <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">2</a>
-                <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">3</a>
-                <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">&raquo;</a>
-            </nav>
-        </div>
-    </main>
-
-    <!-- Footer (same as index.html) -->
-    <footer class="bg-gray-800 text-white py-12">
-        <!-- Copy footer from index.html -->
     </footer>
+
+
+    <!-- Script Filter -->
+    <script src="product.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const list = document.getElementById("product-list");
+            if (!list) return;
+
+            const params = new URLSearchParams(window.location.search);
+            const category = params.get("category");
+            const sub = params.get("sub");
+
+            let filtered = products;
+
+            if (category) filtered = filtered.filter(p => p.category === category);
+            if (sub) filtered = filtered.filter(p => p.sub === sub);
+
+            if (filtered.length === 0) {
+                list.innerHTML = `<p class="text-gray-600 col-span-full">Produk tidak ditemukan.</p>`;
+            } else {
+                list.innerHTML = filtered.map(p => renderProductCard(p)).join("");
+            }
+        });
+    </script>
+
+
 </body>
+
 </html>
