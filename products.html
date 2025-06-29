@@ -2,17 +2,16 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk - Simo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk - Simo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="bg-gray-50">
 
-    <!-- Navigation -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+  <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-indigo-600">
                 <span class="text-indigo-800">Si</span>mo
@@ -53,10 +52,22 @@
                     <i class="fab fa-facebook-f"></i>
                 </a>
 
-                <!-- Ikon Search -->
-                <a href="#" class="text-gray-600 hover:text-indigo-600">
-                    <i class="fas fa-search"></i>
-                </a>
+                <!-- Tombol Search -->
+                <div class="relative">
+                    <button id="search-btn" class="text-gray-600 hover:text-indigo-600">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <!-- Form Pencarian (awal tersembunyi) -->
+                    <div id="search-box"
+                        class="hidden absolute right-0 mt-2 w-64 bg-white border border-gray-300 rounded shadow-lg p-2">
+                        <input id="search-input" type="text" placeholder="Cari produk..."
+                            class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <button onclick="handleSearch()"
+                            class="mt-2 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Cari</button>
+                    </div>
+                </div>
+
 
                 <!-- Keranjang -->
                 <a href="cart.html" class="text-gray-600 hover:text-indigo-600 relative">
@@ -73,151 +84,92 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-10">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800">Semua Produk</h1>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-4 sm:space-y-0 mt-4 md:mt-0">
 
-        <!-- Heading + Filter -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-            <h1 class="text-3xl font-bold mb-4 md:mb-0">Semua Produk</h1>
-            <div class="flex space-x-4">
-                <!-- Urutkan -->
-                <div class="relative">
-                    <select
-                        class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500">
-                        <option>Urutkan</option>
-                        <option>Harga Terendah</option>
-                        <option>Harga Tertinggi</option>
-                        <option>Terbaru</option>
-                        <option>Terlaris</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-                <!-- Kategori -->
-                <div class="relative">
-                    <select
-                        class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500">
-                        <option>Kategori</option>
-                        <option>Kemeja Katun</option>
-                        <option>Kemeja Linen</option>
-                        <option>Kemeja Formal</option>
-                        <option>Kemeja Flanel</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-            </div>
+        <!-- Filter: Urutkan -->
+        <div class="relative">
+          <select id="sort-select"
+            class="block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="">Urutkan</option>
+            <option value="low">Harga Terendah</option>
+            <option value="high">Harga Tertinggi</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+            <i class="fas fa-chevron-down"></i>
+          </div>
         </div>
 
-        <!-- Produk -->
-        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Produk akan dimasukkan via JavaScript -->
-        </div>
+        <!-- Tambahkan filter kategori jika perlu -->
+      </div>
+    </div>
 
-        <!-- Pagination
-    <div class="mt-12 flex justify-center">
-      <nav class="flex items-center space-x-2">
-        <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">&laquo;</a>
-        <a href="#" class="px-3 py-1 rounded border bg-indigo-600 text-white">1</a>
-        <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">2</a>
-        <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">3</a>
-        <a href="#" class="px-3 py-1 rounded border text-gray-600 hover:bg-gray-100">&raquo;</a>
-      </nav>
-    </div> -->
+    <!-- Hasil Pencarian (jika ada) -->
+    <div id="search-info" class="mb-4 text-gray-700 text-lg"></div>
 
-    </main>
+    <!-- Daftar Produk -->
+    <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Diisi via JavaScript -->
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Simo</h3>
-                    <p class="text-gray-400">Toko Pakaian premium dengan kualitas terbaik dan harga terjangkau.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Tautan Cepat</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Beranda</a></li>
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">Produk</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-white">Tentang Kami</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Kontak</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Bantuan</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Panduan Ukuran</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Kebijakan Pengembalian</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Metode Pembayaran</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Hubungi Kami</h4>
-                    <ul class="space-y-2 mb-4">
-                        <li class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i> +62 838 2482 7233</li>
-                        <li class="text-gray-400"><i class="fas fa-envelope mr-2"></i> simo@gmail.com</li>
-                        <li class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i> Bandung, Indonesia</li>
-                    </ul>
-                    <div class="flex space-x-4 mt-2">
-                        <a href="https://www.tiktok.com/@simo" target="_blank"
-                            class="text-gray-400 hover:text-white text-xl">
-                            <i class="fab fa-tiktok"></i>
-                        </a>
-                        <a href="https://www.instagram.com/simo" target="_blank"
-                            class="text-gray-400 hover:text-white text-xl">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com/simo" target="_blank"
-                            class="text-gray-400 hover:text-white text-xl">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://shopee.co.id/simo" target="_blank"
-                            class="text-gray-400 hover:text-white text-xl">
-                            <i class="fas fa-store"></i>
-                        </a>
-                        <a href="https://tokopedia.com/simo" target="_blank"
-                            class="text-gray-400 hover:text-white text-xl">
-                            <i class="fas fa-shopping-bag"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Simo. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <!-- (Gunakan versi footer yang sudah rapi sebelumnya) -->
 
+  <!-- Script Filter -->
+  <script src="product.js"></script>
+  <script>
+    document.getElementById("sort-select")?.addEventListener("change", function () {
+      const selected = this.value;
+      const url = new URL(window.location.href);
+      if (selected) {
+        url.searchParams.set("sort", selected);
+      } else {
+        url.searchParams.delete("sort");
+      }
+      window.location.href = url.toString();
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const list = document.getElementById("product-list");
+      if (!list) return;
 
-    <!-- Script Filter -->
-    <script src="product.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const list = document.getElementById("product-list");
-            if (!list) return;
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get("category");
+      const sub = params.get("sub");
+      const search = params.get("search");
+      const sort = params.get("sort");
 
-            const params = new URLSearchParams(window.location.search);
-            const category = params.get("category");
-            const sub = params.get("sub");
+      let filtered = products;
 
-            let filtered = products;
+      if (category) filtered = filtered.filter(p => p.category === category);
+      if (sub) filtered = filtered.filter(p => p.sub === sub);
+      if (search) {
+        const keyword = search.toLowerCase();
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(keyword));
+      }
+      if (sort === "low") {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sort === "high") {
+        filtered.sort((a, b) => b.price - a.price);
+      }
 
-            if (category) filtered = filtered.filter(p => p.category === category);
-            if (sub) filtered = filtered.filter(p => p.sub === sub);
+      const searchInfo = document.getElementById("search-info");
+      if (search && searchInfo) {
+        searchInfo.innerHTML = `🔍 Hasil pencarian untuk: <span class="font-semibold text-indigo-600">"${search}"</span>`;
+      }
 
-            if (filtered.length === 0) {
-                list.innerHTML = `<p class="text-gray-600 col-span-full">Produk tidak ditemukan.</p>`;
-            } else {
-                list.innerHTML = filtered.map(p => renderProductCard(p)).join("");
-            }
-        });
-    </script>
-
-
+      if (filtered.length === 0) {
+        list.innerHTML = `<p class="text-gray-500 col-span-full">Produk tidak ditemukan.</p>`;
+      } else {
+        list.innerHTML = filtered.map(p => renderProductCard(p)).join("");
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -1,11 +1,11 @@
 // Data produk
-const products = [
+window.products = [
   {
     id: 1,
     name: "Kaos Simo Elang",
     price: 45000,
     originalPrice: 150000,
-    desc: "",
+    desc: "simple & modern 100% katun",
     image: "products/elang.jpg"
   },
   {
@@ -13,7 +13,7 @@ const products = [
     name: "Kaos Simo",
     price: 40000,
     originalPrice: 130000,
-    desc: "",
+    desc: "simple & modern 100% katun",
     image: "products/ChatGPT Image Jun 25, 2025, 10_20_19 PM.png"
   },
   {
@@ -21,7 +21,7 @@ const products = [
     name: "Kaos Garuda",
     price: 40000,
     originalPrice: 130000,
-    desc: "",
+    desc: "simple & modern 100% katun",
     image: "products/garuda.jpg"
   },
   {
@@ -29,7 +29,7 @@ const products = [
     name: "Kaos Simo Classic",
     price: 40000,
     originalPrice: 130000,
-    desc: "",
+    desc: "simple & modern 100% katun",
     image: "products/simo.jpg"
   },
   {
@@ -37,7 +37,7 @@ const products = [
     name: "Kaos Simo Classic",
     price: 40000,
     originalPrice: 130000,
-    desc: "",
+    desc: "simple & modern 100% katun",
     image: "products/simo.jpg"
   },
   {
@@ -45,7 +45,7 @@ const products = [
     name: "Kaos Simo Classic",
     price: 40000,
     originalPrice: 130000,
-    desc: "",
+    desc: "simple & modern 100% katun",
     image: "products/simo.jpg"
   },
   {
@@ -53,7 +53,7 @@ const products = [
     name: "Kaos Simo Classic",
     price: 40000,
     originalPrice: 130000,
-    desc: "",
+    desc: "simple & modern 100% katun",
     image: "products/simo.jpg"
   },
   {
@@ -61,7 +61,7 @@ const products = [
     name: "Kaos Simo Classic",
     price: 40000,
     originalPrice: 130000,
-    desc: "",
+    desc: "simple & modern 100% katun",
     image: "products/simo.jpg"
   }
 ];

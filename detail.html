@@ -94,14 +94,6 @@
                         class="bg-indigo-600 text-white px-6 py-3 rounded font-bold hover:bg-indigo-700 transition w-full sm:w-auto">
                         Tambah ke Keranjang
                     </button>
-
-
-
-                    <a id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center justify-center gap-2 bg-green-500 text-white font-semibold px-6 py-3 rounded hover:bg-green-600 transition w-full sm:w-auto text-center">
-                        <i class="fab fa-whatsapp text-lg"></i>
-                        Pesan via WhatsApp
-                    </a>
                 </div>
             </div>
         </div>
@@ -189,10 +181,6 @@
             } else {
                 document.getElementById("product-oldprice").style.display = "none";
             }
-
-            // Update tombol WA
-            const waText = `Halo, saya tertarik dengan produk "${product.name}" dan ingin memesan. Apakah masih tersedia?`;
-            document.getElementById("whatsapp-btn").href = `https://wa.me/6283824827233?text=${encodeURIComponent(waText)}`;
 
             // Tambah event listener untuk tombol keranjang
             const cartBtn = document.getElementById("add-to-cart");
