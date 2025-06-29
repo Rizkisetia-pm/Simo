@@ -197,7 +197,7 @@
         const orderId = "SIMO-" + Date.now();
         const gross_amount = totalBayar;
 
-        const res = await fetch("/api/checkout", {
+        const res = await fetch("https://idyllic-rugelach-86791a.netlify.app//api/checkout", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
