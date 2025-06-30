@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - Simo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+  <main class="max-w-5xl mx-auto p-4 space-y-6">
+    <!-- Alamat -->
+    <section class="bg-white p-4 rounded shadow space-y-2">
+      <div class="flex items-start gap-2">
+        <span class="text-red-600 text-lg">📍</span>
+        <div class="flex-1">
+          <p id="namaTeleponTampil" class="font-semibold">nama penerima
+            <span class="text-sm text-black/70" id="nomorTeleponTampil">nomor telepon</span>
+            <span class="text-sm text-black/70" id="emailPenggunaTampil">alamat email</span>
+          </p>
+          <p id="alamat-teks" class="text-sm text-gray-700">alamat lengkap penerima</p>
+        </div>
+        <span class="text-xs bg-red-100 text-red-500 px-2 py-0.5 rounded">Utama</span>
+        <button onclick="bukaModal()" class="text-sm text-blue-600 underline ml-2">Ubah</button>
+      </div>
+      <button onclick="isiOtomatisAlamat()" class="text-sm text-indigo-600 hover:underline ml-6">Deteksi Lokasi
+        Saya</button>
+    </section>
+
+    <!-- Produk -->
+    <section class="bg-white p-4 rounded shadow space-y-4">
+      <h2 class="font-semibold text-lg">Produk Dipesan</h2>
+      <div id="produk-checkout" class="space-y-4"></div>
+    </section>
+
+    <!-- Ringkasan -->
+    <section class="space-y-4">
+      <div class="bg-white rounded shadow p-4 text-sm text-gray-800">
+        <div class="flex justify-between"><span>Subtotal Pesanan</span><span id="subtotal-produk">Rp0</span></div>
+        <div class="flex justify-between"><span>Total Proteksi Produk</span><span>Rp625</span></div>
+        <div class="flex justify-between"><span>Subtotal Pengiriman</span><span>Rp3.500</span></div>
+        <div class="flex justify-between"><span>Biaya Layanan</span><span>Rp1.000</span></div>
+        <div class="flex justify-between"><span>Voucher Diskon</span><span class="text-red-500">-Rp500</span></div>
+        <div class="flex justify-between mt-2 border-t pt-3 text-lg font-bold">
+          <span>Total Pembayaran</span>
+          <span id="total-pesanan" class="text-red-600">Rp0</span>
+        </div>
+      </div>
+      <div class="text-center py-4">
+        <p class="text-xs text-gray-500 mb-2">Dengan klik “Buat Pesanan”, saya menyetujui <a href="#"
+            class="text-blue-500 underline">Syarat & Ketentuan</a>.</p>
+        <button id="buat-pesanan-btn"
+          class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded text-sm font-semibold">Buat
+          Pesanan</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Alamat -->
+  <div id="alamatModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white w-full max-w-lg rounded-lg p-6 relative">
+      <h2 class="text-xl font-semibold mb-4">Alamat Baru</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <input type="text" placeholder="Nama Lengkap" id="namaLengkap" class="border rounded px-3 py-2 text-sm">
+        <input type="text" placeholder="Nomor Telepon" id="inputTelepon" class="border rounded px-3 py-2 text-sm">
+        <input type="email" placeholder="Email" id="inputEmail" class="border rounded px-3 py-2 text-sm">
+      </div>
+      <div class="mb-4">
+        <label class="text-sm font-medium block mb-1">Provinsi</label>
+        <select id="provinsiSelect" class="w-full border rounded px-3 py-2 text-sm">
+          <option value="">-- Pilih Provinsi --</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="text-sm font-medium block mb-1">Kota/Kabupaten</label>
+        <select id="kotaSelect" class="w-full border rounded px-3 py-2 text-sm" disabled>
+          <option value="">-- Pilih Kota --</option>
+        </select>
+      </div>
+      <input type="text" placeholder="Nama Jalan" id="jalan" class="w-full border rounded px-3 py-2 text-sm mb-3">
+      <input type="text" placeholder="Detail Tambahan" id="detail" class="w-full border rounded px-3 py-2 text-sm mb-4">
+      <div class="flex justify-between items-center">
+        <button onclick="tutupModal()" class="text-gray-500 text-sm">Nanti Saja</button>
+        <button onclick="simpanAlamat()"
+          class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded text-sm font-semibold">OK</button>
+      </div>
+      <button onclick="tutupModal()"
+        class="absolute top-2 right-3 text-gray-400 hover:text-black text-xl">&times;</button>
+    </div>
+  </div>
+
+  <!-- Script Alamat -->
+  <script>
+    function bukaModal() {
+      document.getElementById("alamatModal").classList.remove("hidden");
+    }
+
+    function tutupModal() {
+      document.getElementById("alamatModal").classList.add("hidden");
+    }
+
+    function simpanAlamat() {
+      const nama = document.getElementById("namaLengkap").value;
+      const telepon = document.getElementById("inputTelepon").value;
+      const email = document.getElementById("inputEmail").value;
+      const provinsi = document.getElementById("provinsiSelect").value;
+      const kota = document.getElementById("kotaSelect").value;
+      const jalan = document.getElementById("jalan").value;
+      const detail = document.getElementById("detail").value;
+      const alamatGabungan = `${jalan}, ${detail}, ${kota}, ${provinsi}`;
+
+      document.getElementById("namaTeleponTampil").innerHTML = `${nama} <span class="text-sm text-black/70" id="nomorTeleponTampil">(${telepon})</span> <span class="text-sm text-black/70" id="emailPenggunaTampil">${email}</span>`;
+      document.getElementById("alamat-teks").textContent = alamatGabungan;
+
+      tutupModal();
+    }
+
+    function isiOtomatisAlamat() {
+      if (!navigator.geolocation) {
+        alert("Browser tidak mendukung geolocation.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude, longitude } = pos.coords;
+        document.getElementById("provinsiSelect").value = "JAWA BARAT";
+        document.getElementById("kotaSelect").innerHTML = '<option value="BANDUNG">BANDUNG</option>';
+        document.getElementById("kotaSelect").disabled = false;
+        document.getElementById("kotaSelect").value = "BANDUNG";
+        document.getElementById("jalan").value = `Koordinat: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+        document.getElementById("detail").value = "Terdeteksi otomatis via browser";
+
+        simpanAlamat();
+      }, () => {
+        alert("Gagal mendeteksi lokasi.");
+      });
+    }
+  </script>
+
+  <!-- Script Produk & Checkout -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const dataProvinsi = {
+        "JAWA BARAT": ["BANDUNG", "BEKASI", "BOGOR"],
+        "DKI JAKARTA": ["JAKARTA PUSAT", "JAKARTA SELATAN"],
+        "BANTEN": ["SERANG", "TANGERANG"]
+      };
+      const provinsiSelect = document.getElementById("provinsiSelect");
+      const kotaSelect = document.getElementById("kotaSelect");
+
+      Object.keys(dataProvinsi).forEach(prov => {
+        const opt = document.createElement("option");
+        opt.value = prov;
+        opt.textContent = prov;
+        provinsiSelect.appendChild(opt);
+      });
+
+      provinsiSelect.addEventListener("change", () => {
+        const selected = provinsiSelect.value;
+        kotaSelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
+        kotaSelect.disabled = !selected;
+        if (selected) {
+          dataProvinsi[selected].forEach(kota => {
+            const opt = document.createElement("option");
+            opt.value = kota;
+            opt.textContent = kota;
+            kotaSelect.appendChild(opt);
+          });
+        }
+      });
+
+      // Produk Checkout
+      const produkCheckout = JSON.parse(localStorage.getItem("produkCheckout") || "[]");
+      const container = document.getElementById("produk-checkout");
+      let total = 0;
+
+      produkCheckout.forEach(item => {
+        const subtotal = item.harga * item.jumlah;
+        total += subtotal;
+        const div = document.createElement("div");
+        div.className = "flex items-start gap-4 border-t pt-4";
+        div.innerHTML = `
+          <img src="${item.gambar}" class="w-20 h-20 object-cover rounded">
+          <div class="flex-1"><p class="font-medium text-sm">${item.nama}</p><p class="text-sm text-gray-500 mt-1">Variasi: ${item.variasi}</p></div>
+          <div class="text-right text-sm"><p>Rp${item.harga.toLocaleString('id-ID')}</p><p class="text-gray-600">Jumlah: ${item.jumlah}</p><p class="font-semibold">Subtotal: Rp${subtotal.toLocaleString('id-ID')}</p></div>`;
+        container.appendChild(div);
+      });
+
+      const ongkir = 0, proteksi = 0, layanan = 0, diskon = 0;
+      const totalBayar = total + ongkir + proteksi + layanan - diskon;
+      document.getElementById("subtotal-produk").textContent = `Rp${total.toLocaleString('id-ID')}`;
+      document.getElementById("total-pesanan").textContent = `Rp${totalBayar.toLocaleString('id-ID')}`;
+
+      // Checkout
+      document.getElementById("buat-pesanan-btn").addEventListener("click", async () => {
+        const orderId = "SIMO-" + Date.now();
+        const gross_amount = totalBayar;
+
+        const res = await fetch("http://localhost:3000/api/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            order_id: orderId,
+            gross_amount: totalBayar,
+            customer_name: document.getElementById("namaLengkap").value || "Nama Default",
+            email: document.getElementById("inputEmail").value || "email@example.com",
+            phone: document.getElementById("inputTelepon").value || "08123456789",
+          }),
+        });
+
+
+        const data = await res.json();
+        if (data.redirect_url) {
+          window.location.href = data.redirect_url;
+        } else {
+          alert("Gagal membuat transaksi.");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
