@@ -6,8 +6,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
-  <div class="max-w-5xl mx-auto p-6">
+  <div class="max-w-5xl mx-auto p-6 flex justify-between items-center mb-4">
     <h1 class="text-2xl font-bold mb-4">📦 Pesanan yang Sudah Dibayar</h1>
+    <button onclick="downloadCSV()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
+    ⬇️ Download CSV
+  </button>
+  </div>
+
+
     <div id="orders-container" class="bg-white rounded shadow p-4 overflow-x-auto">
       <table class="min-w-full table-auto text-sm text-left border">
         <thead>
@@ -24,7 +30,6 @@
         </thead>
         <tbody id="order-rows" class="text-gray-800"></tbody>
       </table>
-    </div>
   </div>
 
   <script>
@@ -60,5 +65,40 @@
 
     fetchOrders();
   </script>
+  <script>
+  function convertToCSV(data) {
+    const headers = ["Order ID", "Nama", "Email", "Telepon", "Jumlah", "Metode", "Status", "Waktu Bayar"];
+    const rows = data.map(o => [
+      o.order_id,
+      o.name || "",
+      o.email || "",
+      o.phone || "",
+      o.amount,
+      o.method,
+      o.status,
+      new Date(o.paid_at).toLocaleString("id-ID")
+    ]);
+
+    const csv = [headers, ...rows].map(row => row.map(field => `"${String(field).replace(/"/g, '""')}"`).join(",")).join("\n");
+    return csv;
+  }
+
+  async function downloadCSV() {
+    const res = await fetch("https://f232e6c6-0d39-457d-956a-42ef6e8fff59-00-3bgx654x4kes0.pike.replit.dev/api/admin/orders");
+    const orders = await res.json();
+
+    const csvContent = convertToCSV(orders);
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `pesanan-simo-${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
+
 </body>
 </html>
