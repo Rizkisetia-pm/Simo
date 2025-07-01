@@ -1,52 +1,64 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <title>Admin - Daftar Pesanan</title>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Pesanan Dibayar</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-  <div class="bg-white rounded shadow-md p-6 max-w-3xl w-full">
-    <h1 class="text-2xl font-bold mb-4 flex items-center gap-2">
-      📦 Daftar Pesanan Berhasil
-    </h1>
-    <div id="order-list" class="space-y-4 text-sm text-gray-700">
-      <p>⏳ Memuat data...</p>
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-5xl mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">📦 Pesanan yang Sudah Dibayar</h1>
+    <div id="orders-container" class="bg-white rounded shadow p-4 overflow-x-auto">
+      <table class="min-w-full table-auto text-sm text-left border">
+        <thead>
+          <tr class="bg-gray-200 text-gray-700">
+            <th class="p-2 border">Order ID</th>
+            <th class="p-2 border">Nama</th>
+            <th class="p-2 border">Email</th>
+            <th class="p-2 border">Telepon</th>
+            <th class="p-2 border">Jumlah</th>
+            <th class="p-2 border">Metode</th>
+            <th class="p-2 border">Status</th>
+            <th class="p-2 border">Waktu Bayar</th>
+          </tr>
+        </thead>
+        <tbody id="order-rows" class="text-gray-800"></tbody>
+      </table>
     </div>
   </div>
 
   <script>
-    const orderList = document.getElementById("order-list");
+    async function fetchOrders() {
+      try {
+        const res = await fetch("https://f232e6c6-0d39-457d-956a-42ef6e8fff59-00-3bgx654x4kes0.pike.replit.dev/api/admin/orders");
+        const orders = await res.json();
+        const tbody = document.getElementById("order-rows");
 
-    fetch("https://f232e6c6-0d39-457d-956a-42ef6e8fff59-00-3bgx654x4kes0.pike.replit.dev/api/admin/orders")
-      .then(res => {
-        if (!res.ok) throw new Error("Gagal fetch");
-        return res.json();
-      })
-      .then(data => {
-        if (!data.length) {
-          orderList.innerHTML = `<p>❗ Tidak ada data pesanan.</p>`;
+        if (orders.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="8" class="text-center p-4">Belum ada pesanan dibayar.</td></tr>`;
           return;
         }
 
-        orderList.innerHTML = ""; // Bersihkan loading text
-        data.forEach(order => {
-          const div = document.createElement("div");
-          div.className = "bg-gray-50 p-4 rounded border";
-          div.innerHTML = `
-            <div><strong>ID Pesanan:</strong> ${order.order_id}</div>
-            <div><strong>Total:</strong> Rp${parseInt(order.amount).toLocaleString("id-ID")}</div>
-            <div><strong>Status:</strong> ${order.status}</div>
-            <div><strong>Metode:</strong> ${order.method}</div>
-            <div><strong>Dibayar Pada:</strong> ${new Date(order.paid_at).toLocaleString("id-ID")}</div>
+        orders.forEach(order => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td class="p-2 border">${order.order_id}</td>
+            <td class="p-2 border">${order.name || "-"}</td>
+            <td class="p-2 border">${order.email || "-"}</td>
+            <td class="p-2 border">${order.phone || "-"}</td>
+            <td class="p-2 border">Rp${parseInt(order.amount).toLocaleString("id-ID")}</td>
+            <td class="p-2 border capitalize">${order.method}</td>
+            <td class="p-2 border font-medium text-green-600">${order.status}</td>
+            <td class="p-2 border">${new Date(order.paid_at).toLocaleString("id-ID")}</td>
           `;
-          orderList.appendChild(div);
+          tbody.appendChild(row);
         });
-      })
-      .catch(err => {
-        console.error("❌ Gagal memuat:", err);
-        orderList.innerHTML = `<p class="text-red-600">❌ Gagal memuat data.</p>`;
-      });
+      } catch (err) {
+        console.error("Gagal memuat data:", err);
+      }
+    }
+
+    fetchOrders();
   </script>
 </body>
 </html>
