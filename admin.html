@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Pesanan Pembayaran</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">📦 Daftar Pesanan Berhasil</h1>
+    <div id="orders" class="space-y-4 text-sm text-gray-800">
+      <p>🔄 Memuat data pesanan...</p>
+    </div>
+  </div>
+
+  <script>
+    fetch("/api/admin/orders")
+
+      .then((res) => res.json())
+      .then((orders) => {
+        const container = document.getElementById("orders");
+        if (orders.length === 0) {
+          container.innerHTML = "<p>Tidak ada pesanan tercatat.</p>";
+          return;
+        }
+
+        container.innerHTML = "";
+        orders.reverse().forEach((order, index) => {
+          container.innerHTML += `
+            <div class="border p-4 rounded bg-gray-50">
+              <div><strong>#${orders.length - index} — ID:</strong> ${order.order_id}</div>
+              <div><strong>Status:</strong> ${order.status}</div>
+              <div><strong>Total:</strong> Rp ${parseInt(order.amount).toLocaleString("id-ID")}</div>
+              <div><strong>Metode:</strong> ${order.method}</div>
+              <div><strong>Waktu:</strong> ${new Date(order.paid_at).toLocaleString("id-ID")}</div>
+            </div>
+          `;
+        });
+      })
+      .catch(() => {
+        document.getElementById("orders").innerHTML = "<p class='text-red-500'>❌ Gagal memuat data.</p>";
+      });
+  </script>
+</body>
+</html>
