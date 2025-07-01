@@ -187,7 +187,7 @@
         container.appendChild(div);
       });
 
-      const ongkir = 3500, proteksi = 625, layanan = 1000, diskon = 500;
+      const ongkir = 0, proteksi = 0, layanan = 0, diskon = 0;
       const totalBayar = total + ongkir + proteksi + layanan - diskon;
       document.getElementById("subtotal-produk").textContent = `Rp${total.toLocaleString('id-ID')}`;
       document.getElementById("total-pesanan").textContent = `Rp${totalBayar.toLocaleString('id-ID')}`;
@@ -197,7 +197,7 @@
         const orderId = "SIMO-" + Date.now();
         const gross_amount = totalBayar;
 
-        const res = await fetch("https://elastic-alert-ferryboat.glitch.me/api/checkout", {
+        const res = await fetch("https://f232e6c6-0d39-457d-956a-42ef6e8fff59-00-3bgx654x4kes0.pike.replit.dev/api/checkout", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

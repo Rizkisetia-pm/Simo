@@ -34,6 +34,10 @@ app.post("/api/checkout", async (req, res) => {
         email,
         phone,
       },
+
+      // callbacks: {
+      //   finish: "http://localhost:3000/sukses.html",
+      // },
     };
 
     const transaction = await snap.createTransaction(parameter);
