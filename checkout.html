@@ -194,6 +194,17 @@
 
       // Checkout
       document.getElementById("buat-pesanan-btn").addEventListener("click", async () => {
+        const nama = document.getElementById("namaLengkap").value.trim();
+        const email = document.getElementById("inputEmail").value.trim();
+        const telepon = document.getElementById("inputTelepon").value.trim();
+
+        // Validasi sebelum checkout
+        if (!nama || !email || !telepon) {
+          alert("Harap isi data alamat, email, dan nomor telepon terlebih dahulu.");
+          bukaModal(); // otomatis buka form alamat lagi
+          return;
+        }
+
         const orderId = "SIMO-" + Date.now();
         const gross_amount = totalBayar;
 
@@ -203,12 +214,11 @@
           body: JSON.stringify({
             order_id: orderId,
             gross_amount: totalBayar,
-            customer_name: document.getElementById("namaLengkap").value || "Nama Default",
-            email: document.getElementById("inputEmail").value || "email@example.com",
-            phone: document.getElementById("inputTelepon").value || "08123456789",
+            customer_name: nama,
+            email: email,
+            phone: telepon,
           }),
         });
-
 
         const data = await res.json();
         if (data.redirect_url) {
@@ -217,6 +227,7 @@
           alert("Gagal membuat transaksi.");
         }
       });
+
     });
   </script>
 </body>
