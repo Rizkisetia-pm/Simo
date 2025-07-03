@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesanan Saya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-sm">
+
+    <a href="index.html" class="text-2xl font-bold text-indigo-600">
+        <span class="text-indigo-800">Si</span>mo
+    </a>
+
+    <!-- Navigasi -->
+    <div class="bg-white shadow sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex space-x-6 overflow-x-auto">
+            <button class="text-red-600 font-semibold border-b-2 border-red-600 pb-2">Semua</button>
+            <button>Belum Bayar</button>
+            <button>Sedang Dikemas</button>
+            <button>Dikirim</button>
+            <button>Selesai</button>
+            <button>Dibatalkan</button>
+            <button>Pengembalian Barang</button>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 py-6" id="pesanan-container">
+        <p class="text-gray-500">Memuat pesanan...</p>
+    </div>
+
+    <script src="pesanan.js"></script> <!-- Tambahkan script eksternal -->
+
+
+</body>
+
+</html>
