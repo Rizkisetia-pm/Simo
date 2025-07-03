@@ -50,9 +50,9 @@ window.products = [
     sub: "T-shirt",
     image: "products/simo.jpg",
     images: [
-      "images/utama.jpg",
-      "images/sebelum-sesudah.png", // gambar perbandingan
-      "images/testimoni.png"
+      "products/simo.jpg",
+      "products/simo.jpg", // gambar perbandingan
+      "products/simo.jpg"
     ]
   },
   {
@@ -65,9 +65,9 @@ window.products = [
     sub: "T-shirt",
     image: "products/simo.jpg",
     images: [
-      "images/utama.jpg",
-      "images/sebelum-sesudah.png", // gambar perbandingan
-      "images/testimoni.png"
+      "products/simo.jpg",
+      "products/simo.jpg", // gambar perbandingan
+      "products/simo.jpg"
     ]
   },
   {
@@ -80,9 +80,9 @@ window.products = [
     sub: "T-shirt",
     image: "products/simo.jpg",
     images: [
-      "images/utama.jpg",
-      "images/sebelum-sesudah.png", // gambar perbandingan
-      "images/testimoni.png"
+      "products/simo.jpg",
+      "products/simo.jpg", // gambar perbandingan
+      "products/simo.jpg"
     ]
   },
   {
@@ -95,9 +95,9 @@ window.products = [
     sub: "T-shirt",
     image: "products/simo.jpg",
     images: [
-      "images/utama.jpg",
-      "images/sebelum-sesudah.png", // gambar perbandingan
-      "images/testimoni.png"
+      "products/simo.jpg",
+      "products/simo.jpg", // gambar perbandingan
+      "products/simo.jpg"
     ]
   },
   {
@@ -110,9 +110,9 @@ window.products = [
     sub: "T-shirt",
     image: "products/simo.jpg",
     images: [
-      "images/utama.jpg",
-      "images/sebelum-sesudah.png", // gambar perbandingan
-      "images/testimoni.png"
+      "products/simo.jpg",
+      "products/simo.jpg", // gambar perbandingan
+      "products/simo.jpg"
     ]
   }
 ];
