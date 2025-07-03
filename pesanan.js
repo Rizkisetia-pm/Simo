@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/api/admin/orders")
+    fetch("https://www.f232e6c6-0d39-457d-956a-42ef6e8fff59-00-3bgx654x4kes0.pike.replit.dev/api/admin/orders")
+
         .then((res) => res.json())
         .then((data) => {
             const container = document.getElementById("pesanan-container");
