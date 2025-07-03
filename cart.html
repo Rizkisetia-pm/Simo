@@ -45,7 +45,7 @@
       <div class="grid md:grid-cols-4 gap-8">
         <div>
           <h3 class="text-xl font-bold mb-4">Simo</h3>
-          <p class="text-gray-400">Toko Pakaian premium dengan kualitas terbaik dan harga terjangkau.</p>
+          <p class="text-gray-400">Toko Pakaian premium dengan kualitas terbaik dengan harga terjangkau.</p>
         </div>
         <div>
           <h4 class="font-semibold mb-4">Tautan Cepat</h4>
@@ -68,26 +68,31 @@
         <div>
           <h4 class="font-semibold mb-4">Hubungi Kami</h4>
           <ul class="space-y-2 mb-4">
-            <li class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i> +62 838 2482 7233</li>
+            <li class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i> +62 831 4401 1224</li>
             <li class="text-gray-400"><i class="fas fa-envelope mr-2"></i> simo@gmail.com</li>
             <li class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i> Bandung, Indonesia</li>
           </ul>
           <div class="flex space-x-4 mt-2">
-            <a href="https://www.tiktok.com/@simo" target="_blank" class="text-gray-400 hover:text-white text-xl">
+            <a href="https://www.tiktok.com/@simostore.id?is_from_webapp=1&sender_device=pc" target="_blank"
+              class="text-gray-400 hover:text-white text-xl">
               <i class="fab fa-tiktok"></i>
             </a>
-            <a href="https://www.instagram.com/simo" target="_blank" class="text-gray-400 hover:text-white text-xl">
+            <a href="https://www.instagram.com/simpelmodern.id?igsh=MTA0eTUyNXNqNXZwZw==" target="_blank"
+              class="text-gray-400 hover:text-white text-xl">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://www.facebook.com/simo" target="_blank" class="text-gray-400 hover:text-white text-xl">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://shopee.co.id/simo" target="_blank" class="text-gray-400 hover:text-white text-xl">
-              <i class="fas fa-store"></i>
-            </a>
-            <a href="https://tokopedia.com/simo" target="_blank" class="text-gray-400 hover:text-white text-xl">
-              <i class="fas fa-shopping-bag"></i>
-            </a>
+            <!-- <a href="#" target="_blank"
+                            class="text-gray-400 hover:text-white text-xl">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="text-gray-400 hover:text-white text-xl">
+                            <i class="fas fa-store"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="text-gray-400 hover:text-white text-xl">
+                            <i class="fas fa-shopping-bag"></i>
+                        </a> -->
           </div>
         </div>
       </div>
@@ -151,27 +156,27 @@
     }
 
     function prosesCheckout() {
-  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  const products = window.products || [];
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const products = window.products || [];
 
-  const checkoutItems = cart.map(item => {
-    const product = products.find(p => p.id === item.id);
-    if (!product) return null;
+      const checkoutItems = cart.map(item => {
+        const product = products.find(p => p.id === item.id);
+        if (!product) return null;
 
-    return {
-      id: product.id,
-      nama: product.name,
-      variasi: product.variation || "Default",
-      jumlah: item.qty,
-      harga: product.price,
-      gambar: product.image,
-      toko: product.store || "SIMO OFFICIAL"
-    };
-  }).filter(Boolean);
+        return {
+          id: product.id,
+          nama: product.name,
+          variasi: product.variation || "Default",
+          jumlah: item.qty,
+          harga: product.price,
+          gambar: product.image,
+          toko: product.store || "SIMO OFFICIAL"
+        };
+      }).filter(Boolean);
 
-  localStorage.setItem("produkCheckout", JSON.stringify(checkoutItems));
-  window.location.href = "checkout.html"; // ✔️ redirect ke public path
-}
+      localStorage.setItem("produkCheckout", JSON.stringify(checkoutItems));
+      window.location.href = "checkout.html"; // ✔️ redirect ke public path
+    }
 
 
   </script>

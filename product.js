@@ -6,6 +6,8 @@ window.products = [
     price: 45000,
     originalPrice: 150000,
     desc: "simple & modern 100% katun",
+    category: "man",
+    sub: "T-shirt",
     image: "products/elang.jpg"
   },
   {
@@ -14,7 +16,14 @@ window.products = [
     price: 40000,
     originalPrice: 130000,
     desc: "simple & modern 100% katun",
-    image: "products/ChatGPT Image Jun 25, 2025, 10_20_19 PM.png"
+    category: "man",
+    sub: "T-shirt",
+    image: "products/ChatGPT Image Jun 25, 2025, 10_20_19 PM.png",
+    images: [
+      "products/ChatGPT Image Jun 25, 2025, 10_20_19 PM.png",
+      "products/ChatGPT Image Jun 25, 2025, 10_20_19 PM.png", // gambar perbandingan
+      "products/ChatGPT Image Jun 25, 2025, 10_20_19 PM.png"
+    ]
   },
   {
     id: 3,
@@ -22,7 +31,14 @@ window.products = [
     price: 40000,
     originalPrice: 130000,
     desc: "simple & modern 100% katun",
-    image: "products/garuda.jpg"
+    category: "man",
+    sub: "T-shirt",
+    image: "products/garuda.jpg",
+    images: [
+      "products/garuda.jpg",
+      "products/garuda.jpg", // gambar perbandingan
+      "products/garuda.jpg"
+    ]
   },
   {
     id: 4,
@@ -30,7 +46,14 @@ window.products = [
     price: 40000,
     originalPrice: 130000,
     desc: "simple & modern 100% katun",
-    image: "products/simo.jpg"
+    category: "man",
+    sub: "T-shirt",
+    image: "products/simo.jpg",
+    images: [
+      "images/utama.jpg",
+      "images/sebelum-sesudah.png", // gambar perbandingan
+      "images/testimoni.png"
+    ]
   },
   {
     id: 5,
@@ -38,7 +61,14 @@ window.products = [
     price: 40000,
     originalPrice: 130000,
     desc: "simple & modern 100% katun",
-    image: "products/simo.jpg"
+    category: "man",
+    sub: "T-shirt",
+    image: "products/simo.jpg",
+    images: [
+      "images/utama.jpg",
+      "images/sebelum-sesudah.png", // gambar perbandingan
+      "images/testimoni.png"
+    ]
   },
   {
     id: 6,
@@ -46,7 +76,14 @@ window.products = [
     price: 40000,
     originalPrice: 130000,
     desc: "simple & modern 100% katun",
-    image: "products/simo.jpg"
+    category: "man",
+    sub: "T-shirt",
+    image: "products/simo.jpg",
+    images: [
+      "images/utama.jpg",
+      "images/sebelum-sesudah.png", // gambar perbandingan
+      "images/testimoni.png"
+    ]
   },
   {
     id: 7,
@@ -54,7 +91,14 @@ window.products = [
     price: 40000,
     originalPrice: 130000,
     desc: "simple & modern 100% katun",
-    image: "products/simo.jpg"
+    category: "man",
+    sub: "T-shirt",
+    image: "products/simo.jpg",
+    images: [
+      "images/utama.jpg",
+      "images/sebelum-sesudah.png", // gambar perbandingan
+      "images/testimoni.png"
+    ]
   },
   {
     id: 8,
@@ -62,7 +106,14 @@ window.products = [
     price: 40000,
     originalPrice: 130000,
     desc: "simple & modern 100% katun",
-    image: "products/simo.jpg"
+    category: "man",
+    sub: "T-shirt",
+    image: "products/simo.jpg",
+    images: [
+      "images/utama.jpg",
+      "images/sebelum-sesudah.png", // gambar perbandingan
+      "images/testimoni.png"
+    ]
   }
 ];
 
@@ -84,6 +135,21 @@ function renderProductCard(product) {
   `;
 }
 
+function addToCart(productId, size) {
+  const cart = getCart();
+  const existing = cart.find(item => item.id === productId && item.size === size);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ id: productId, size: size, qty: 1 });
+  }
+
+  setCart(cart);
+  updateCartCount();
+}
+
+
 // Render ke halaman utama jika ada elemen featured-products
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("featured-products");
@@ -102,19 +168,6 @@ function getCart() {
 // Simpan keranjang ke localStorage
 function setCart(cart) {
   localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Tambahkan produk ke keranjang
-function addToCart(productId) {
-  const cart = getCart();
-  const existing = cart.find(item => item.id === productId);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ id: productId, qty: 1 });
-  }
-  setCart(cart);
-  updateCartCount();
 }
 
 // Update angka keranjang di navbar
