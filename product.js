@@ -8,7 +8,12 @@ window.products = [
     desc: "simple & modern 100% katun",
     category: "man",
     sub: "T-shirt",
-    image: "products/elang.jpg"
+    image: "products/elang.jpg",
+    images: [
+      "products/elang.jpg",
+      "products/elang.jpg", // gambar perbandingan
+      "products/elang.jpg"
+    ]
   },
   {
     id: 2,
